@@ -14,15 +14,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-_SEED_DISPLAY_KEYS = (
-    "seed_id",
-    "summary",
-    "artistic_aim",
-    "musical_element",
-    "personality_trait",
-    "process_habit",
-)
-
 _BASE_CONSTRAINTS = [
     "Derive every musical decision from the brief's aims, style targets, process habits, seed row, and (only secondarily) the user orientation; do not invent biography, dates, or historical specifics absent from those strings.",
     "Spell out concrete scoring means: register, doubling, phrase length, metric frame, articulation, voice-leading density, repetition vs. permutation—avoid broad aesthetic labels and vague hype.",
@@ -57,69 +48,61 @@ _COMPOSER_CONSTRAINTS: dict[str, list[str]] = {
 }
 
 
-def _format_seed_block(seed: dict[str, Any]) -> str:
-    parts: list[str] = []
-    for k in _SEED_DISPLAY_KEYS:
-        v = seed.get(k)
-        if v is None or str(v).strip() == "":
-            continue
-        if k == "summary":
-            parts.append(f"summary={v}")
-        elif k == "seed_id":
-            parts.append(f"seed_id={v}")
-        else:
-            parts.append(f"{k}={v}")
-    dim = seed.get("dimensions")
-    if isinstance(dim, list) and dim:
-        parts.append("dimensions=" + ",".join(str(d) for d in dim))
-    return "; ".join(parts)
+def _seed_focus_parts(seed: dict[str, Any]) -> str | None:
+    """Compact seed line: seed_id (or seed_index) + single focus string—no repeat of full row."""
+    if not seed:
+        return None
+    bits: list[str] = []
+    sid = seed.get("seed_id")
+    if sid is not None and str(sid).strip():
+        bits.append(f"seed_id={str(sid).strip()}")
+    elif seed.get("index") is not None:
+        bits.append(f"seed_index={seed['index']}")
+    focus: str | None = None
+    for key in ("musical_element", "artistic_aim"):
+        v = seed.get(key)
+        if v is not None and str(v).strip():
+            focus = str(v).strip()
+            break
+    if not focus:
+        summ = seed.get("summary")
+        if summ is not None and str(summ).strip():
+            focus = str(summ).split("·")[0].strip()
+    if focus:
+        bits.append(f"focus={focus}")
+    return "; ".join(bits) if bits else None
 
 
-def _generator_blocks(
+def _build_generator_prompt(
     cid: str,
+    musical_direction: dict[str, Any],
     seed: dict[str, Any],
-    aims: list[str],
-    style: list[str],
-    habits: list[str],
     intent: str,
-) -> list[str]:
-    blocks: list[str] = [
-        f"Composer profile identifier: {cid}. Lock scoring priorities to the profile-derived fields below; "
-        "they override any colloquial reading of the user request."
+) -> str:
+    """Reference structured state instead of restating aims/style/habits in prose."""
+    md_json = json.dumps(musical_direction, ensure_ascii=False, separators=(",", ":"))
+    parts: list[str] = [
+        f"Composer profile identifier: {cid}. Lock scoring priorities to the governing brief below; "
+        "they override any colloquial reading of the user request.",
+        "Musical direction (authoritative, do not reinterpret):\n"
+        + md_json
+        + ".",
     ]
-    seed_text = _format_seed_block(seed)
-    if seed_text:
-        blocks.append(
-            "Primary concept seed (keep this combination audible as a thread through sections, not as a one-off gesture): "
-            + seed_text
-            + "."
-        )
-    if aims:
-        blocks.append(
-            "Compositional aims—realize as voice-leading, formal pacing, and registral goals, not as programme labels: "
-            + " | ".join(aims)
-            + "."
-        )
-    if style:
-        blocks.append(
-            "Sonic and formal targets—name them when specifying instruments, voicings, phrase groups, and motivic work: "
-            + " | ".join(style)
-            + "."
-        )
-    if habits:
-        blocks.append(
-            "Process habits—translate into how material is drafted, varied, rescored, or repurposed across the piece: "
-            + "; ".join(habits)
+    seed_line = _seed_focus_parts(seed)
+    if seed_line:
+        parts.append(
+            "Primary seed focus (keep audible as a thread through sections, not as a one-off gesture): "
+            + seed_line
             + "."
         )
     if intent:
-        blocks.append(
+        parts.append(
             "User orientation (interpret this request strictly through the profile above; "
             "adapt its terms rather than replacing them): "
             + intent
             + "."
         )
-    return blocks
+    return " ".join(parts)
 
 
 def build_music_prompt(brief: dict[str, Any]) -> dict[str, Any]:
@@ -135,9 +118,6 @@ def build_music_prompt(brief: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(md, dict):
         raise ValueError("musical_direction must be an object")
 
-    aims = [str(a).strip() for a in (md.get("aims") or []) if str(a).strip()]
-    style = [str(s).strip() for s in (md.get("style_elements") or []) if str(s).strip()]
-    habits = [str(h).strip() for h in (md.get("process_habits") or []) if str(h).strip()]
     raw_seed = brief.get("seed") or {}
     seed = raw_seed if isinstance(raw_seed, dict) else {}
 
@@ -145,7 +125,7 @@ def build_music_prompt(brief: dict[str, Any]) -> dict[str, Any]:
     intent = str(raw_intent).strip()
     cid = str(brief["composer_id"])
 
-    generator_prompt = " ".join(_generator_blocks(cid, seed, aims, style, habits, intent))
+    generator_prompt = _build_generator_prompt(cid, md, seed, intent)
 
     extra = _COMPOSER_CONSTRAINTS.get(cid, _DEFAULT_EXTRA_CONSTRAINTS)
     constraints = list(_BASE_CONSTRAINTS) + list(extra)

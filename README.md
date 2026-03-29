@@ -4,7 +4,7 @@
 
 ## What this does
 
-Given a composer profile (Bach, Haydn, Chopin, …) and a short **intent** (“playful symphony”, “nocturne about distance and memory”), this repo produces **deterministic JSON**: human-facing summary and concepts, a **brief**, and a **music_prompt** (`generator_prompt` + `constraints`) that stay faithful to the profile. The user line is **secondary**; profile fields drive interpretation.
+Given a composer profile (Bach, Haydn, Chopin, …) and a short **intent** (“playful symphony”, “nocturne about distance and memory”), this repo produces **deterministic JSON**: human-facing summary and concepts, a **brief**, and a **music_prompt** (`generator_prompt` + `constraints`) that stay faithful to the profile. The user line is **secondary**; profile fields drive interpretation. The runtime **references structured state** (e.g. `musical_direction` as JSON) instead of repeating the same instructions in prose.
 
 ## Pipeline
 

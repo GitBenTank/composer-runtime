@@ -60,9 +60,9 @@ def test_generator_prompt_profiles_seed_before_user_orientation(composer_id: str
     profile = load_profile(composer_id, data_dir=_DATA)
     brief = get_brief(profile, _SHARED_INTENT)
     text = build_music_prompt(brief)["generator_prompt"]
-    assert "Primary concept seed" in text
+    assert "Primary seed focus" in text
     assert "User orientation" in text
-    assert text.index("Primary concept seed") < text.index("User orientation")
+    assert text.index("Primary seed focus") < text.index("User orientation")
 
 
 def test_user_orientation_asks_to_reinterpret_not_obey_literally() -> None:
