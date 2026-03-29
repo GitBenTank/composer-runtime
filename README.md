@@ -73,7 +73,23 @@ Output: `generator_prompt`, `constraints`, `output_target: external_music_model_
 
 ## OpenClaw
 
-Point OpenClaw at this directory as the workspace. Skills live under `skills/`.
+OpenClaw discovers **workspace** skills from `<workspace-root>/skills`, not from whatever directory your shell is in. If `openclaw skills info composer` says *Skill "composer" not found*, your **configured workspace root** is almost certainly not this repo (for example it may still be `~/clawd` or `~/.openclaw/workspace`).
+
+Pick one fix:
+
+1. **Set this repo as the OpenClaw workspace** (preferred if you want `bridge/` paths to match docs) — use whatever your OpenClaw install documents for “workspace” / agent workspace path in `~/.openclaw/openclaw.json`, then restart the gateway or start a new agent session.
+
+2. **Mount this skill pack via `extraDirs`** — in `~/.openclaw/openclaw.json` under `skills.load`, add an **absolute** path to this repo’s `skills` folder (lowest precedence but sufficient for `openclaw skills list` to see `composer`):
+   ```json5
+   skills: {
+     load: {
+       extraDirs: ["/full/path/to/composer-runtime/skills"],
+     },
+   },
+   ```
+   If a path with `~` misbehaves, use a full path. See [Skills](https://docs.openclaw.ai/tools/skills) and [Skills config](https://docs.openclaw.ai/tools/skills-config).
+
+3. **Install or copy the skill into the active workspace** — run `openclaw skills install …` targeting this skill, or copy/symlink `skills/composer/` into `<active-workspace>/skills/composer/`.
 
 ```bash
 openclaw skills list
@@ -89,15 +105,20 @@ Use the **composer** skill playbook; it documents calling `bridge/composer_bridg
 2. `Use the composer skill to get concept seeds for bach.`
 3. `Use the composer skill to create a brief for chopin with the intent: nocturne about distance and memory.`
 
-### If skills do not appear
+### If skills still do not appear
 
-From workspace root, capture:
+From **this** repo root, verify files exist; then confirm OpenClaw’s **active** workspace (not only `pwd` in a terminal):
 
 ```bash
 pwd
 find skills -maxdepth 2 -type f
-cat skills/composer/SKILL.md
+head -n 30 skills/composer/SKILL.md
 openclaw skills list
 openclaw skills info composer
 openclaw skills check
 ```
+
+### Other CLI warnings you might see
+
+- **`plugins.entries.jarvis` plugin not found** — remove the stale `jarvis` entry from your plugins config in `openclaw.json`.
+- **Telegram `groupPolicy` allowlist with empty allow lists** — group messages are dropped until you add sender IDs or set `groupPolicy` to `open` (see OpenClaw channel docs).

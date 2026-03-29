@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic JSON bridge: profile → summary, concepts, brief. OpenClaw calls this; no agent logic here."""
+"""Deterministic JSON bridge: profile → summary, concepts, brief, reflection. No agent or domain logic."""
 
 from __future__ import annotations
 
@@ -36,6 +36,7 @@ _ensure_composer_system_path()
 
 from composer_system.brief import get_brief  # noqa: E402
 from composer_system.creation import creative_concepts  # noqa: E402
+from composer_system.exceptions import ProfileLoadError  # noqa: E402
 from composer_system.load import load_profile  # noqa: E402
 from composer_system.reflection import (  # noqa: E402
     human_reflection_summary,
@@ -43,10 +44,26 @@ from composer_system.reflection import (  # noqa: E402
 )
 
 
+def resolve_data_dir(arg: str) -> Path:
+    """Expand, resolve, and validate ``--data-dir`` for bridge CLIs."""
+    p = Path(arg).expanduser()
+    try:
+        p = p.resolve(strict=False)
+    except OSError as e:
+        raise SystemExit(f"Cannot resolve --data-dir {arg!r}: {e}") from e
+    if not p.is_dir():
+        raise SystemExit(f"--data-dir is not a directory: {p}")
+    return p
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Emit summary, concepts, brief JSON for OpenClaw.")
     ap.add_argument("composer_id")
-    ap.add_argument("--intent", required=True, help='User intent, e.g. nocturne about distance and memory')
+    ap.add_argument(
+        "--intent",
+        required=True,
+        help='User intent, e.g. nocturne about distance and memory',
+    )
     ap.add_argument(
         "--data-dir",
         default=str(_RUNTIME_ROOT / "data" / "composers"),
@@ -54,17 +71,20 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    data_dir = Path(args.data_dir)
-    profile = load_profile(args.composer_id, data_dir=data_dir)
+    data_dir = resolve_data_dir(args.data_dir)
+    try:
+        profile = load_profile(args.composer_id, data_dir=data_dir)
+    except ProfileLoadError as e:
+        raise SystemExit(str(e)) from e
 
-    out = {
+    payload = {
         "composer": {"id": profile.id, "display_name": profile.display_name},
         "summary": human_reflection_summary(profile),
         "concepts": creative_concepts(profile),
         "brief": get_brief(profile, args.intent),
         "reflection_struct": structured_reflection(profile),
     }
-    print(json.dumps(out, indent=2, ensure_ascii=False))
+    print(json.dumps(payload, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

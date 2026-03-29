@@ -1,0 +1,2 @@
+# Runtime test / dev dependencies for composer-runtime (CI installs this after composer-system).
+pytest>=8

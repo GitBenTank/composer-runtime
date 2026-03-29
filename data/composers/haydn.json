@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "haydn",
+  "display_name": "Franz Joseph Haydn",
+  "life_span": { "birth_year": 1732, "death_year": 1809 },
+  "era_context": "Mid-to-late eighteenth-century Austro-Hungarian court and public concert life; long service at Esterházy followed by London seasons and Viennese maturity, spanning early galant manners through high classical syntax.",
+  "public_impression": "Often remembered as an industrious ‘Papa’ figure who helped crystallize the symphony and string quartet as enduring genres, associated with wit, symmetry, and craftsmanlike abundance.",
+  "deeper_dimensions": "His career couples decades of contractual ensemble work with increasing international reputation: trial-and-error innovation inside stable routines, audience-facing humor, and late works that stretch form and harmonic daring without shedding classical clarity.",
+  "personality": {
+    "traits": [
+      "methodical in professional habit",
+      "humor-conscious in musical rhetoric",
+      "adaptable across patron and market settings"
+    ],
+    "notes": "Widely reported anecdotes and correspondence suggest a temperament more nuanced than mythic cheerfulness alone; this profile stays descriptive rather than biographical fiction."
+  },
+  "artistic_identity": {
+    "aims": [
+      "integrate motivic economy with memorable thematic profile across movements",
+      "balance ceremonial utility, private chamber depth, and public concert appeal where the commission allows"
+    ],
+    "notes": "Stated as tendencies visible across genres and career phases, not as a unified manifesto."
+  },
+  "musical_style": {
+    "characteristic_elements": [
+      "classical phrase architecture with playful metric and cadential surprises",
+      "orchestral and quartet textures that clarify conversation between voices",
+      "developmental thinking that often treats small cells as generative seeds"
+    ],
+    "notes": "Labels compress a long stylistic arc; they sidestep work-by-work debates best handled with score study."
+  },
+  "creative_process": {
+    "habits": [
+      "sustained output across cyclical genres (symphonies, quartets, operatic seasons) within institutional calendars",
+      "revision, arrangement, and repurposing when new performance contexts arose"
+    ],
+    "notes": "Daily workshop detail is unevenly documented; habits here mirror the scale and reuse patterns evident in the corpus and career structure."
+  },
+  "source_notes": "Life dates and career stations rest on standard reference narratives. Interpretive lines blend documentary traces (contracts, reception, selected letters) with scholarly synthesis; they are modeling aids rather than verdicts on private motivation."
+}
