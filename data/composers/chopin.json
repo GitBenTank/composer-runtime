@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "id": "chopin",
+  "display_name": "Frédéric Chopin",
+  "life_span": { "birth_year": 1810, "death_year": 1849 },
+  "era_context": "Romantic piano culture centered on Paris salons, teaching, and publishing; Polish origin and diasporic identity are recurrent themes in reception and in his own letters and works.",
+  "public_impression": "Often remembered as the archetypal composer of intimate piano lyricism: mazurkas, polonaises, nocturnes, and études associated with refinement, singing line, and national color.",
+  "deeper_dimensions": "His artistic world also includes large-scale forms (ballades, scherzos, sonatas), formal experimentation within dance genres, and a documented engagement with pedagogy, orchestration in early works, and the economics of publishing and performance networks.",
+  "personality": {
+    "traits": ["meticulous about pianistic detail", "socially selective", "proud of craft"],
+    "notes": "Letter evidence supports care for reputation and health struggles; temperament summaries in popular accounts often flatten nuance, so this profile stays descriptive rather than diagnostic."
+  },
+  "artistic_identity": {
+    "aims": ["sustain vocal bel canto analogies in piano texture", "embed folkloric gesture without reducing works to postcard nationalism"],
+    "notes": "Aims are phrased as compositional tendencies visible in analysis and reception, not as self-maxims transcribed from missing manifestos."
+  },
+  "musical_style": {
+    "characteristic_elements": [
+      "rubato treated as structural rather than merely ornamental in many works",
+      "ornamental variation across repeats and editions",
+      "dance genres as carriers of large-scale drama as well as charm"
+    ],
+    "notes": "Stylistic bullets summarize widely taught features; they are not exhaustive and elide manuscript-editorial debates best handled outside this file."
+  },
+  "creative_process": {
+    "habits": [
+      "revision visible across parallel versions and editions",
+      "workshop-like refinement in teaching contexts feeding public performance repertory"
+    ],
+    "notes": "Process claims lean on edition scholarship and pedagogy traces; daily routines are not fully recoverable from sources."
+  },
+  "source_notes": "Life dates and Paris-centric career framing are standard reference points. Personality and process lines blend documentary hints (letters, teaching lineage) with interpretive synthesis common in musicology and performance traditions; they are modeling tools for creative simulation, not clinical or biographical verdicts."
+}

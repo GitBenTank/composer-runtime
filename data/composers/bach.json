@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "id": "bach",
+  "display_name": "Johann Sebastian Bach",
+  "life_span": { "birth_year": 1685, "death_year": 1750 },
+  "era_context": "late Baroque, Central German Protestant musical culture; career centered on church, court, and collegium music in Leipzig and earlier posts.",
+  "public_impression": "Often seen as the supreme contrapuntist and systematizer of Lutheran sacred music, with encyclopedic command of forms familiar in his milieu.",
+  "deeper_dimensions": "His surviving output also includes secular festive works, pedagogical collections, and a pragmatic responsiveness to employers and performing forces—creativity within institutional constraints as much as transcendence above them.",
+  "personality": {
+    "traits": ["disciplined", "pragmatic within duty", "intellectually intense"],
+    "notes": "Biographical detail is partial; traits here name widely discussed tendencies in received interpretation, not private psychometrics."
+  },
+  "artistic_identity": {
+    "aims": ["clarity of contrapuntal line within harmonic purpose", "liturgical and pedagogical utility where relevant"],
+    "notes": "Framed from the mix of sacred office, teaching, and civic music-making visible in his career pattern."
+  },
+  "musical_style": {
+    "characteristic_elements": [
+      "contrapuntal saturation with functional harmony",
+      "motoric rhythmic drive in many instrumental genres",
+      "chorale-based structures in sacred vocal works"
+    ],
+    "notes": "Stylistic labels are broad and era-typical; they summarize common textbook characterizations rather than claiming exhaustive uniqueness."
+  },
+  "creative_process": {
+    "habits": [
+      "revision and repurposing of material across contexts",
+      "working within established genres (cantata cycle, suite, fugue) as creative frame"
+    ],
+    "notes": "Concrete daily habits are not fully documented; this section encodes plausible working patterns consistent with the surviving work corpus."
+  },
+  "source_notes": "Dates and posts are standard biographical anchors. Personality and process entries mix consensus career facts with interpretive synthesis; do not treat as undisputed historical claims about inner life."
+}

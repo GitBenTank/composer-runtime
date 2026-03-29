@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "id": "beethoven",
+  "display_name": "Ludwig van Beethoven",
+  "life_span": { "birth_year": 1770, "death_year": 1827 },
+  "era_context": "Viennese professional life spanning late classical syntax toward emphatic personal rhetoric in forms inherited from Haydn and Mozart; career shaped by patronage transitions, publishing, and concert life.",
+  "public_impression": "Widely seen as the isolated hero of struggle who forced music toward a new emotional scale—deafness, fist-shaking intensity, and the iconic profile of the artist against fate.",
+  "deeper_dimensions": "Extensive sketch material and contemporaneous accounts point to iterative labor, negotiation with publishers and performers, and genre craft (string quartet, symphony, sonata) as disciplined workshops as much as spontaneous eruptions; social life was constrained yet networked, not purely solitary myth.",
+  "personality": {
+    "traits": ["stubborn on artistic priorities", "precise about intent in scores", "volatile in documented relationships"],
+    "notes": "Trait language reflects recurring documentary anecdotes; it avoids psychiatric labels and does not pretend complete interior access."
+  },
+  "artistic_identity": {
+    "aims": ["expand classical forms through developmental drama and cyclic integration", "articulate ethical-public address in certain choral and stage-adjacent projects"],
+    "notes": "Framed as tendencies inferred from repertoire and sketches; not every work pursues every aim."
+  },
+  "musical_style": {
+    "characteristic_elements": [
+      "motivic development treated as narrative engine",
+      "accent and metric displacement heightening rhetorical drive",
+      "expanded slow-movement lyricism alongside aggressive scherzo characters"
+    ],
+    "notes": "These are broad descriptors used in survey teaching; analytical nuance varies by piece and period."
+  },
+  "creative_process": {
+    "habits": [
+      "prolonged sketching and recombination before final scores",
+      "rethinking works for alternate performance contexts"
+    ],
+    "notes": "Sketch studies underpin habit claims; still, many daily choices remain invisible beyond what papers survive."
+  },
+  "source_notes": "Biographical milestones and sketch evidence are mainstream scholarly references. The 'heroic isolation' trope in public_impression is included deliberately as reception context, then complicated in deeper_dimensions. Interpretive lines serve modeling, not medical or moral judgment."
+}

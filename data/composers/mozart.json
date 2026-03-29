@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "id": "mozart",
+  "display_name": "Wolfgang Amadeus Mozart",
+  "life_span": { "birth_year": 1756, "death_year": 1791 },
+  "era_context": "Mid-to-late eighteenth-century Austro-German musical theater, church, and chamber music; professional mobility across Salzburg, Vienna, and European courts shaped repertory and patronage.",
+  "public_impression": "Popular memory emphasizes effortless melodic genius, the traveling childhood, and a near-mythic ease of composition—music as though dictated in full dress.",
+  "deeper_dimensions": "Autograph evidence, correspondence about revisions, and simultaneous professional commitments indicate speed but not infallibility: negotiation with singers, dramaturgy in opera, and financial pressure are persistent background conditions, not just divine spontaneity.",
+  "personality": {
+    "traits": ["sharp ear for theater and social nuance", "pride in rank and fee", "wit in letters that can read as abrasive or playful depending on context"],
+    "notes": "Traits summarize epistolary voice and career patterns; they are not a complete psychological portrait."
+  },
+  "artistic_identity": {
+    "aims": ["integrate vocal character and ensemble continuity in staged works", "marshal contrapuntal learning within galant surface clarity"],
+    "notes": "Stated as compositional priorities visible across genres; Mozart left few explicit 'mission statements' in modern terms."
+  },
+  "musical_style": {
+    "characteristic_elements": [
+      "singable periodic phrases with sophisticated underlying voice-leading",
+      "coloristic orchestration within classical ensemble norms",
+      "dramatic pacing manipulations in ensemble finales"
+    ],
+    "notes": "Brief labels for orientation; analytical detail belongs in specialized writing, not in this capsule."
+  },
+  "creative_process": {
+    "habits": [
+      "compose under production deadlines for opera and concert life",
+      "revise in response to performers and occasion"
+    ],
+    "notes": "Supports a historically grounded view of craft under time pressure; contrasts with folklore of faultless first drafts."
+  },
+  "source_notes": "Dates and major locales are textbook-standard. The gap between mythic ease (public_impression) and documented labor (deeper_dimensions) follows widely repeated musicological correctives; remaining gaps in evidence are normal for eighteenth-century lives."
+}
